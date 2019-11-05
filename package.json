@@ -1,0 +1,11 @@
+{
+  "name": "redux-dict-state",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@types/lodash.assign": "^4.2.6",
+    "immutable": "^4.0.0-rc.12",
+    "lodash.assign": "^4.2.0"
+  }
+}
