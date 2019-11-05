@@ -20,6 +20,13 @@ describe('test createState', () => {
     expect(state1.getIn(['a', 2], 233)).toEqual({foo: 2})
   })
 
+  it('add and clear', () => {
+    let state1 = s1.reducer(undefined, s1.actions.setState('a', 2, {foo: 1}))
+    state1 = s1.reducer(state1, s1.actions.clearState())
+
+    expect(state1.getIn(['a', 2], 233)).toEqual(233)
+  })
+
   it('add to others', () => {
     let state1 = s1.reducer(undefined, s2.actions.setState('a', 1, {foo: 1}))
     expect(state1.getIn(['a', 1], 233)).toEqual(233)
