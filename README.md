@@ -1,6 +1,14 @@
 # redux-dict-state
 this is a module to define some dict state
 
+## api
+
+```js
+let { createState } = require('redux-dict-state')
+let { actions, reducer } = createState('unique key')
+let state = reducer(undefined, actions.setState('a', 1, {foo: 1}))
+```
+
 ## usage
 
 ```js
