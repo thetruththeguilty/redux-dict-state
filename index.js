@@ -12,6 +12,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const i = __importStar(require("immutable"));
 const lodash_assign_1 = __importDefault(require("lodash.assign"));
+const SET_STATE = 'RDS_setState';
+const CLEAR_STATE = 'RDS_clearState';
 exports.defaultState = i.Map();
 function createState(key) {
     return {
@@ -20,21 +22,21 @@ function createState(key) {
     };
     function setState(collectionKey, id, trans) {
         return {
-            type: 'setState', key,
+            type: SET_STATE, key,
             payload: { collectionKey, id, trans }
         };
     }
     function clearState() {
-        return { type: 'clearState', key };
+        return { type: CLEAR_STATE, key };
     }
     function reducer(state = exports.defaultState, action) {
         if (action.key !== key) {
             return state;
         }
-        if (action.type === 'clearState') {
+        if (action.type === CLEAR_STATE) {
             return exports.defaultState;
         }
-        else if (action.type === 'setState') {
+        else if (action.type === SET_STATE) {
             let { trans, id, collectionKey } = action.payload;
             return state.updateIn([collectionKey, id], v => {
                 if (typeof trans === 'function') {
