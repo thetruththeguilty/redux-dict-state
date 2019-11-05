@@ -5,8 +5,13 @@ this is a module to define some dict state
 
 ```js
 let { createState } = require('redux-dict-state')
+// create a dict state with a certain key
+// with this key, the reducer will recognize the action
 let { actions, reducer } = createState('unique key')
+// setState to collection `a` of id `1` as `{foo: 1}`
 let state = reducer(undefined, actions.setState('a', 1, {foo: 1}))
+// clear all state of the key which you declare when createState
+state = reducer(state, actions.clearState())
 ```
 
 ## usage
@@ -31,6 +36,13 @@ describe('test createState', () => {
     state1 = s1.reducer(state1, s1.actions.setState('a', 2, (v) => { return { foo: v.foo + 1 } }))
 
     expect(state1.getIn(['a', 2], 233)).toEqual({foo: 2})
+  })
+
+  it('add and clear', () => {
+    let state1 = s1.reducer(undefined, s1.actions.setState('a', 2, {foo: 1}))
+    state1 = s1.reducer(state1, s1.actions.clearState())
+
+    expect(state1.getIn(['a', 2], 233)).toEqual(233)
   })
 
   it('add to others', () => {
