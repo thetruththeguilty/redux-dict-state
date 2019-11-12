@@ -28,7 +28,7 @@ export function createState(key: string) {
 
   return {
     actions: { setState, batchState, clearState, },
-    reducer,
+    reducer, defaultState,
   }
 
   function setState(collectionKey: string, id: any, trans: TTrans): TSetAction {

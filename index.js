@@ -31,7 +31,7 @@ function applyTrans(value, id, trans) {
 function createState(key) {
     return {
         actions: { setState, batchState, clearState, },
-        reducer,
+        reducer, defaultState: exports.defaultState,
     };
     function setState(collectionKey, id, trans) {
         return {
